@@ -533,11 +533,25 @@ void My_Display()
         glUniformMatrix4fv(um4mvp, 1, GL_FALSE, &scmvp[0][0]);
         //	glUniformMatrix4fv(um4mvp, 1, GL_FALSE, value_ptr(mvp));
         glDrawElements(GL_TRIANGLES, ss[i].count, GL_UNSIGNED_INT, 0);
-        // 1. Bind The VAO of the Shape
+ /*
+ //////////////this can solve the texture on the vase but bad performance////////////
+		 for(int i = 0; i < shapeCount; i++)
+    {mat4 scmvp = mvp * scale(mat4(), vec3(0.01f, 0.01f, 0.01f));
+        glUniformMatrix4fv(um4mvp, 1, GL_FALSE, &scmvp[0][0]);
+        glBindVertexArray(ss[i].vao);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ss[i].element);
+		int k=0;
+		for(int j=0;j<ss[i].count;j+=3)
+		{
+			glBindTexture(GL_TEXTURE_2D, textures[shapes[i].mesh.material_ids[k++]]);
+			glDrawElements(GL_TRIANGLES, j, GL_UNSIGNED_INT, (void*)(sizeof(float)*j));
+		}
+        
+        
+    }
+/////////////////////////////////////////////////////////////////////////////////
+*/
 
-        // 3. Bind Textures
-        // 4. Update Uniform Values by glUniform*
-        // 5. glDrawElements Call
     }
 
     // TODO: For Your FBX Model, Get New Animation Here
